@@ -1,7 +1,7 @@
 function [L,U,P] = findLU(A)
 % input matrix must be square matrix, no column should be entirely 0 in the lower left 
 % decomposes matrix into LU matrices
-tic
+
 % initialize
 U = A;
 P = eye(size(A)); % save permutation operations
@@ -12,7 +12,7 @@ I = eye(size(A));
 
 % operation to obtain L & U matrix
 for lv1 = 1:size(A,1)-1     % reference row
-    disp(lv1)
+
     % find index of max value in column
     [~,index] = max(abs(U(lv1:size(A,1),lv1)));
     
@@ -55,5 +55,5 @@ end
 
 % turn into standard L matrix
 L = L + I;
-toc
+
 end

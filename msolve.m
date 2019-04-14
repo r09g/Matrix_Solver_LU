@@ -1,4 +1,4 @@
-function [X,M_A] = msolve(A,B)
+function [X] = msolve(A,B)
 % Solves system AX = B for X
 
 % find LU decomposition
@@ -29,8 +29,6 @@ for lv1 = size(U,1)-1:-1:1
         X(lv1,1) = X(lv1,1) - (U(lv1,lv2)*X(lv2,1))/U(lv1,lv1);
     end
 end
-
-    M_A = memory;
 
 end
 
