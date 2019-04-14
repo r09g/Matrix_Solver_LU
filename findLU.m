@@ -1,5 +1,5 @@
 function [L,U,Permutation] = findLU(A)
-% input matrix must be square matrix
+% input matrix must be square matrix, no column should be entirely 0 in the lower left 
 % decomposes matrix into LU matrices
 
 % initialize
