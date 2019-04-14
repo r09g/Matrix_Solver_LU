@@ -1,5 +1,7 @@
 # Matrix_Solver_LU
-Solves AX = B system for X using LU decomposition
+Solves AX = B system for X using LU decomposition. <br/>
+
+Converts Matrix __A__ into __L__ (with ones on the diagonal) and __U__ matrix.
 
 ## Description
 - __findLU__: <br/>
