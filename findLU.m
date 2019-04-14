@@ -1,10 +1,10 @@
-function [L,U,Permutation] = findLU(A)
+function [L,U,P] = findLU(A)
 % input matrix must be square matrix, no column should be entirely 0 in the lower left 
 % decomposes matrix into LU matrices
-
+tic
 % initialize
 U = A;
-Permutation = eye(size(A)); % save permutation operations
+P = eye(size(A)); % save permutation operations
 
 % L is identity matrix to start
 L = zeros(size(A));
@@ -12,7 +12,7 @@ I = eye(size(A));
 
 % operation to obtain L & U matrix
 for lv1 = 1:size(A,1)-1     % reference row
-    
+    disp(lv1)
     % find index of max value in column
     [~,index] = max(abs(U(lv1:size(A,1),lv1)));
     
@@ -20,22 +20,24 @@ for lv1 = 1:size(A,1)-1     % reference row
         % pivot correct, continue
     else
         index = index + lv1 - 1;    % absolute index
-        
-        P = eye(size(A)); % permutation matrix
 
-        % compute row swaps
+        % record row swaps in P
         temp_row = P(lv1,:);
         P(lv1,:) = P(index,:);
         P(index,:) = temp_row;
         
-        % update permutation matrix
-        Permutation = P*Permutation;
-        
-        % perform row swaps
-        U = P*U;
-        L = P*L;
+        % perform row swap on U
+        tmp_row = U(lv1,:);
+        U(lv1,:) = U(index,:);
+        U(index,:) = tmp_row;
+
+        % perform row swap on L
+        tmp_row = L(lv1,:);
+        L(lv1,:) = L(index,:);
+        L(index,:) = tmp_row;
+
     end
-    
+  
     for lv2 = (lv1+1):size(A,1)     % row to subtract from
         
         if(U(lv2,lv1) == 0)
@@ -53,5 +55,5 @@ end
 
 % turn into standard L matrix
 L = L + I;
-
+toc
 end
