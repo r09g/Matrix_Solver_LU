@@ -17,3 +17,5 @@ The functions are tested by using Matlab's magic(n) function to generate a rando
 
 - __lu__ function by Matlab (Note the scale of the vertical axis Time):
 <img src="https://github.com/yanghaoqin/Matrix_Solver_LU/blob/master/Analysis/Timing_Analysis_Matlab.PNG">
+
+- __YES__, Matlab's lu function is around 422 times faster than my findLU, compared at matrix dimension 1600 x 1600.
