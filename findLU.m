@@ -12,9 +12,9 @@ I = eye(size(A));
 
 % operation to obtain L & U matrix
 for lv1 = 1:size(A,1)-1     % reference row
-
+    
     % find index of max value in column
-    [~,index] = max(abs(U(lv1:size(A,1),lv1))); % find max 
+    [~,index] = max(abs(U(lv1:size(A,1),lv1)));
     
     if (index == 1)
         % pivot correct, continue
@@ -28,6 +28,7 @@ for lv1 = 1:size(A,1)-1     % reference row
         P(lv1,:) = P(index,:);
         P(index,:) = temp_row;
         
+        % update permutation matrix
         Permutation = P*Permutation;
         
         % perform row swaps
@@ -36,12 +37,16 @@ for lv1 = 1:size(A,1)-1     % reference row
     end
     
     for lv2 = (lv1+1):size(A,1)     % row to subtract from
-        % L matrix is created from the I matrix with conjugate operations
-        % of the operations done on the U matrix
-        L(lv2,lv1) = U(lv2,lv1)./U(lv1,lv1);
-        % U matrix created by Gaussian elimination
-        U(lv2,:) = U(lv2,:) - (U(lv2,lv1)./U(lv1,lv1).*U(lv1,:));
-
+        
+        if(U(lv2,lv1) == 0)
+            % already 0, no need to perform Gaussian Elimination
+        else
+            % L matrix is created from the I matrix with conjugate operations
+            % of the operations done on the U matrix
+            L(lv2,lv1) = U(lv2,lv1)./U(lv1,lv1);
+            % U matrix created by Gaussian elimination
+            U(lv2,:) = U(lv2,:) - (U(lv2,lv1)./U(lv1,lv1).*U(lv1,:));
+        end
     end
 
 end
