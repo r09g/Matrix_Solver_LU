@@ -9,6 +9,9 @@ Result: L the lower left matrix; U the upper right matrix; P the permutation mat
 Calls the findLU function and solves a system AX = B
 
 ## Timing Analysis
+
+The functions are tested by using Matlab's magic(n) function to generate a random n x n square matrix.
+
 - findLU function:
 <img src="https://github.com/yanghaoqin/Matrix_Solver_LU/blob/master/Analysis/Timing_Analysis.PNG">
 
