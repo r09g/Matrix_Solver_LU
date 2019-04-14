@@ -1,8 +1,11 @@
 function [X] = msolve(A,B)
 % Solves system AX = B for X
 
-% solution vector
-[L,U] = findLU(A);
+% find LU decomposition
+[L,U,P] = findLU(A);
+
+% apply permutations to solution vector
+B = P*B;
 
 % initialize Y matrix
 Y = zeros(size(L,1),1);
